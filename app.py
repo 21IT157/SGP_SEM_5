@@ -62,61 +62,68 @@
 # # as Streamlit handles the interactivity directly on the server side.
 #importing streamlit library
 
+# import streamlit as st
+
+# from PIL import Image
+
+
+
+# #opening the image
+
+# image = Image.open('#importing streamlit library')
+
+# import streamlit as st
+
+# from PIL import Image
+
+
+
+# #opening the image
+
+# image = Image.open('#importing streamlit library')
+
+# import streamlit as st
+
+# from PIL import Image
+
+
+
+# #opening the image
+
+# image = Image.open('#importing streamlit library')
+
+# import streamlit as st
+
+# from PIL import Image
+
+
+
+# #opening the image
+
+
+# st.image("C:\Users\snehs\OneDrive\Desktop\PYTHON\SGP_FRONTEND\image_app\image_manager\templates\background_image.jpg'")
+
+
+
+# #displaying the image on streamlit app
+
+# st.image(image, caption='Enter any caption here')
+
+
+
+# #displaying the image on streamlit app
+
+# st.image(image, caption='Enter any caption here')
+
+
+
+# #displaying the image on streamlit app
+
+# st.image(image, caption='Enter any caption here')
 import streamlit as st
 
-from PIL import Image
+# Path to your image
+image_path = r"C:\Users\snehs\OneDrive\Desktop\PYTHON\SGP_FRONTEND\image_app\image_manager\templates\background_image.jpg"
 
-
-
-#opening the image
-
-image = Image.open('#importing streamlit library')
-
-import streamlit as st
-
-from PIL import Image
-
-
-
-#opening the image
-
-image = Image.open('#importing streamlit library')
-
-import streamlit as st
-
-from PIL import Image
-
-
-
-#opening the image
-
-image = Image.open('#importing streamlit library')
-
-import streamlit as st
-
-from PIL import Image
-
-
-
-#opening the image
-
-
-st.image("C:\Users\snehs\OneDrive\Desktop\PYTHON\SGP_FRONTEND\image_app\image_manager\templates\background_image.jpg'")
-
-
-
-#displaying the image on streamlit app
-
-st.image(image, caption='Enter any caption here')
-
-
-
-#displaying the image on streamlit app
-
-st.image(image, caption='Enter any caption here')
-
-
-
-#displaying the image on streamlit app
-
-st.image(image, caption='Enter any caption here')
+# Display the image
+st.image(image_path, caption='Your Image Caption', use_column_width=True)
