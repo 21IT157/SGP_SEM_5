@@ -1,37 +1,27 @@
 import streamlit as st
+from PIL import Image
 
-st.title("Mango Leaf Diseases Detection")
+st.title("Upload and Preview Image")
 
-# Button for Image Upload
-upload_button = st.button("Upload Image")
+# Upload image through Streamlit
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
 
-# Button for Opening Camera
-open_camera_button = st.button("Open Camera")
+# Display a preview of the image
+if uploaded_file is not None:
+    # Display image as a preview using HTML and CSS
+    st.write("<h3>Preview Image:</h3>", unsafe_allow_html=True)
+    st.image(uploaded_file, use_column_width=True)
 
-# Button to remove the image
-remove_image_button = st.button("Remove Image")
+    # You can also use Pillow to display the preview
+    # img = Image.open(uploaded_file)
+    # st.image(img, caption="Preview Image", use_column_width=True)
+    
+    st.write("Classifying...")
 
-# Placeholder for displaying the selected image
-image_container = st.empty()
+    # Perform any processing or analysis on the uploaded image if needed
+    # For example, you can use a machine learning model to classify the image
+    # ...
 
-if upload_button:
-    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
-
-    if uploaded_file is not None:
-        st.image(uploaded_file, caption="Image Preview", use_column_width=True)
-        image_container.image(uploaded_file, caption="Image Preview", use_column_width=True)
-image = Image.open(uploaded_file)
-
-
-
-#displaying the image on streamlit app
-
-st.image(image, caption='Enter any caption here')
-if open_camera_button:
-    st.write("Opening Camera...")  # Placeholder for opening the camera
-
-if remove_image_button:
-    image_container.empty()
-
-# Note: The JavaScript functions for previewImage, openCamera, and removeImage are not needed in Streamlit
-# as Streamlit handles the interactivity directly on the server side.
+    # Display additional information or results based on the image analysis
+    # For example, you can display the image class or any other relevant information
+    # ...
