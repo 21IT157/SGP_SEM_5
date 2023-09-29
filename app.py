@@ -27,9 +27,6 @@ from PIL import Image
 def load_image(image_file):
 	img = Image.open(image_file)
 	return img
-
-...
-
 if choice == "Image":
 		st.subheader("Image")
 		image_file = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
