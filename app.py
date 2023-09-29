@@ -73,12 +73,10 @@ def page_leaf():
 
 # Streamlit app
 st.title('User Authentication and Leaf Diagnosis App')
-
-# Registration section
-# Rest of the code remains the same ...
-
-# Login section
-# Rest of the code remains the same ...
+pages = {
+    "Home": page_home,
+    "Leaf Diagnosis": page_leaf,
+}
 
 # Render the selected page and redirect if logged in
 if selected_page in pages:
