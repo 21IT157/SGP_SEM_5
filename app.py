@@ -18,7 +18,7 @@
 # if image_file:
 #     st.write("You selected the following image:")
 #     st.image(image_file, use_column_width=True)
- import streamlit as st
+import streamlit as st
 from PIL import Image
 def page_home():
     st.title("Home Page")
