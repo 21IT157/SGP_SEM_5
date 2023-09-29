@@ -65,11 +65,7 @@ pages = {
 }
 st.sidebar.title("Navigation")
 selected_page = st.sidebar.radio("Go to", list(pages.keys()))
+
+# Render the selected page
 if selected_page in pages:
-    if selected_page == "Home":
-        is_logged_in = page_home()
-        if is_logged_in:
-            # Redirect to the leaf diagnosis page
-            page_leaf()
-    else:
-        pages[selected_page]()
+    pages[selected_page]()
