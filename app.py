@@ -10,7 +10,7 @@ def page_home():
     st.title("Home Page")
     st.write("Welcome to the Home Page.")
 
-def page_about():
+def page_leaf():
     st.title("Leaf Diagnosis")
     st.write("Upload your image to check whether the leaf is diseased or not")
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
