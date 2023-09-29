@@ -1,25 +1,27 @@
 import streamlit as st
 
-# Function to render page content
+# Function to render the home page content
 def page_home():
     st.title("Home Page")
     st.write("Welcome to the Home Page.")
 
+# Function to render the leaf diagnosis page content
 def page_leaf(image_file):
-    st.title("Leaf Diagonisis")
+    st.title("Leaf Diagnosis")
     st.write("Upload your image here to check the health of the leaf")
-          img = Image.open(image_file)
-	return img
-          if choice == "Image":
-                    st.subheader("Image")
-                    image_file = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
-                    st.image(load_image(image_file),width=250)
+    image_file = st.file_uploader("Upload Images", type=["png", "jpg", "jpeg"])
+    st.image(load_image(image_file), width=250)
+    img = Image.open(image_file)
+    return img
 
 
+# Dictionary mapping page names to their respective rendering functions
 pages = {
     "Home": page_home,
     "About": page_leaf,
 }
+
+# Set the title and options for the sidebar navigation
 st.sidebar.title("Navigation")
 selected_page = st.sidebar.radio("Go to", list(pages.keys()))
 
