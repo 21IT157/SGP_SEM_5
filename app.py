@@ -1,10 +1,5 @@
 import streamlit as st
 from PIL import Image
-
-st.title("Upload and Preview Image")
-
-import streamlit as st
-from PIL import Image
 # Function to render page content
 def page_home():
     st.title("Home Page")
