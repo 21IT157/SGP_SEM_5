@@ -5,7 +5,7 @@ def page_home():
     st.title("Home Page")
     st.write("Welcome to the Home Page.")
 
-def page_leaf(image_file:):
+def page_leaf(image_file):
     st.title("Leaf Diagonisis")
     st.write("Upload your image here to check the health of the leaf")
           img = Image.open(image_file)
