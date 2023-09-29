@@ -1,21 +1,20 @@
-# Include PIL, load_image before main()
+import streamlit as st
 from PIL import Image
 
-def load_image(image_file):
-	img = Image.open(image_file)
-	return img
+st.title("Image Uploader and Preview")
 
+# Function to upload and display the image
+def load_image():
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
 
-if choice == "Image":
-		st.subheader("Image")
-		image_file = st.file_uploader("Upload Images", type=["png","jpg","jpeg"])
+    if uploaded_file is not None:
+        # Display the uploaded image
+        st.image(uploaded_file, caption="Uploaded Image.", use_column_width=True)
+        return uploaded_file
 
-		if image_file is not None:
+# Load and display the image
+image_file = load_image()
 
-			  # To See details
-			  file_details = {"filename":image_file.name, "filetype":image_file.type,
-                              "filesize":image_file.size}
-			  st.write(file_details)
-
-              # To View Uploaded Image
-			  st.image(load_image(image_file),width=250)
+if image_file:
+    st.write("You selected the following image:")
+    st.image(image_file, use_column_width=True)
