@@ -1,20 +1,44 @@
-import streamlit as st
+# import streamlit as st
+# from PIL import Image
+
+# st.title("Image Uploader and Preview")
+
+# # Function to upload and display the image
+# def load_image():
+#     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
+
+#     if uploaded_file is not None:
+#         # Display the uploaded image
+#         st.image(uploaded_file, caption="Uploaded Image.", use_column_width=True)
+#         return uploaded_file
+
+# # Load and display the image
+# image_file = load_image()
+
+# if image_file:
+#     st.write("You selected the following image:")
+#     st.image(image_file, use_column_width=True)
+ import streamlit as st
 from PIL import Image
-
-st.title("Image Uploader and Preview")
-
-# Function to upload and display the image
-def load_image():
+def page_home():
+    st.title("Home Page")
+    st.write("Welcome to the Home Page.")
+def page_leaf():
+    st.title("Leaf Diagnosis")
+    st.write("Upload your image to check whether the leaf is diseased or not")
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
-
     if uploaded_file is not None:
-        # Display the uploaded image
-        st.image(uploaded_file, caption="Uploaded Image.", use_column_width=True)
-        return uploaded_file
+        # Display image as a preview using HTML and CSS
+        st.write("<h3>Preview Image:</h3>", unsafe_allow_html=True)
+        st.image(uploaded_file, use_column_width=True)
+        st.write("Classifying...")
+pages = {
+    "Home": page_home,
+    "Leaf Diagnosis": page_leaf,
+}
+st.sidebar.title("Navigation")
+selected_page = st.sidebar.radio("Go to", list(pages.keys()))
 
-# Load and display the image
-image_file = load_image()
-
-if image_file:
-    st.write("You selected the following image:")
-    st.image(image_file, use_column_width=True)
+# Render the selected page
+if selected_page in pages:
+    pages[selected_page]()
