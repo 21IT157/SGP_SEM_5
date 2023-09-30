@@ -23,8 +23,8 @@
 # # Render the selected page
 # if selected_page in pages:
 #     pages[selected_page]()
-from PIL import Image
 import streamlit as st
+from PIL import Image
 import sqlite3
 
 # Connect to SQLite database
@@ -51,23 +51,35 @@ def login_user(username, password):
     user = cursor.fetchall()  # Fetch all users matching the criteria
     return user
 
-def page_login():
-    st.title("Login")
-    
-    login_username = st.text_input('Username:')
-    login_password = st.text_input('Password:', type='password')
-    if st.button('Login'):
-        users = login_user(login_username, login_password)
-        if users:
-            st.success(f'Welcome, {login_username}! Login successful.')
+def page_home():
+    st.title("Home Page")
+    st.write("Welcome to the Home Page.")
+
+    # Prompt user for login or register
+    action = st.radio("Choose an action:", ("Login", "Register"))
+
+    if action == "Login":
+        login_username = st.text_input('Username:')
+        login_password = st.text_input('Password:', type='password')
+        if st.button('Login'):
+            users = login_user(login_username, login_password)
+            if users:
+                st.success(f'Welcome, {login_username}! Login successful.')
+                st.write('Redirecting to Leaf Diagnosis page...')
+                # Display Leaf Diagnosis page
+                page_leaf()
+            else:
+                st.error('Invalid username or password.')
+                st.write('Please enter valid login details.')
+    elif action == "Register":
+        reg_username = st.text_input('New Username:')
+        reg_password = st.text_input('New Password:', type='password')
+        if st.button('Register'):
+            register_user(reg_username, reg_password)
+            st.success('User registered successfully.')
             st.write('Redirecting to Leaf Diagnosis page...')
-            # Remove the login section
-            st.empty()
             # Display Leaf Diagnosis page
             page_leaf()
-        else:
-            st.error('Invalid username or password.')
-            st.write('Please enter valid login details.')
 
 def page_leaf():
     st.title("Leaf Diagnosis")
@@ -79,5 +91,5 @@ def page_leaf():
         st.image(uploaded_file, use_column_width=True)
         st.write("Classifying...")
 
-# Initial landing page with login
-page_login()
+# Initial landing page
+page_home()
