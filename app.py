@@ -51,9 +51,8 @@ def login_user(username, password):
     user = cursor.fetchall()  # Fetch all users matching the criteria
     return user
 
-def page_home():
-    st.title("Home Page")
-    st.write("Welcome to the Home Page.")
+def page_login():
+    st.title("Login")
     
     login_username = st.text_input('Username:')
     login_password = st.text_input('Password:', type='password')
@@ -62,21 +61,13 @@ def page_home():
         if users:
             st.success(f'Welcome, {login_username}! Login successful.')
             st.write('Redirecting to Leaf Diagnosis page...')
-            # Redirect to Leaf Diagnosis page
+            # Remove the login section
+            st.empty()
+            # Display Leaf Diagnosis page
             page_leaf()
         else:
             st.error('Invalid username or password.')
-            st.write('Please register to proceed.')
-
-    st.subheader("Register")
-    reg_username = st.text_input('New Username:')
-    reg_password = st.text_input('New Password:', type='password')
-    if st.button('Register'):
-        register_user(reg_username, reg_password)
-        st.success('User registered successfully.')
-        st.write('Redirecting to Leaf Diagnosis page...')
-        # Redirect to Leaf Diagnosis page
-        page_leaf()
+            st.write('Please enter valid login details.')
 
 def page_leaf():
     st.title("Leaf Diagnosis")
@@ -88,13 +79,5 @@ def page_leaf():
         st.image(uploaded_file, use_column_width=True)
         st.write("Classifying...")
 
-# Sidebar navigation
-st.sidebar.title("Navigation")
-selected_page = st.sidebar.radio("Go to", ["Home", "Leaf Diagnosis"])
-
-# Render the selected page
-if selected_page == "Home":
-    page_home()
-elif selected_page == "Leaf Diagnosis":
-    page_leaf()
-
+# Initial landing page with login
+page_login()
