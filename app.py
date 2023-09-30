@@ -23,9 +23,9 @@
 # # Render the selected page
 # if selected_page in pages:
 #     pages[selected_page]()
+from PIL import Image
 import streamlit as st
 import sqlite3
-from PIL import Image
 
 # Connect to SQLite database
 conn = sqlite3.connect('user_data.db')
@@ -55,21 +55,26 @@ def page_home():
     st.title("Home Page")
     st.write("Welcome to the Home Page.")
     
-    st.subheader("Login")
     login_username = st.text_input('Username:')
     login_password = st.text_input('Password:', type='password')
     if st.button('Login'):
         users = login_user(login_username, login_password)
         if users:
             st.success(f'Welcome, {login_username}! Login successful.')
+            st.write('Redirecting to Leaf Diagnosis page...')
+            page_leaf()
         else:
             st.error('Invalid username or password.')
+            st.write('Please register to proceed.')
 
     st.subheader("Register")
-    reg_username = st.text_input('Username for registration:')
-    reg_password = st.text_input('Password for registration:', type='password')
+    reg_username = st.text_input('New Username:')
+    reg_password = st.text_input('New Password:', type='password')
     if st.button('Register'):
         register_user(reg_username, reg_password)
+        st.success('User registered successfully.')
+        st.write('Redirecting to Leaf Diagnosis page...')
+        page_leaf()
 
 def page_leaf():
     st.title("Leaf Diagnosis")
@@ -81,15 +86,6 @@ def page_leaf():
         st.image(uploaded_file, use_column_width=True)
         st.write("Classifying...")
 
-pages = {
-    "Home": page_home,
-    "Leaf Diagnosis": page_leaf,
-}
-
-st.sidebar.title("Navigation")
-selected_page = st.sidebar.radio("Go to", list(pages.keys()))
-
-# Render the selected page
-if selected_page in pages:
-    pages[selected_page]()
+# Initial landing page
+page_home()
 
