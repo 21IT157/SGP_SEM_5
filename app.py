@@ -62,6 +62,7 @@ def page_home():
         if users:
             st.success(f'Welcome, {login_username}! Login successful.')
             st.write('Redirecting to Leaf Diagnosis page...')
+            # Redirect to Leaf Diagnosis page
             page_leaf()
         else:
             st.error('Invalid username or password.')
@@ -74,6 +75,7 @@ def page_home():
         register_user(reg_username, reg_password)
         st.success('User registered successfully.')
         st.write('Redirecting to Leaf Diagnosis page...')
+        # Redirect to Leaf Diagnosis page
         page_leaf()
 
 def page_leaf():
@@ -86,6 +88,13 @@ def page_leaf():
         st.image(uploaded_file, use_column_width=True)
         st.write("Classifying...")
 
-# Initial landing page
-page_home()
+# Sidebar navigation
+st.sidebar.title("Navigation")
+selected_page = st.sidebar.radio("Go to", ["Home", "Leaf Diagnosis"])
+
+# Render the selected page
+if selected_page == "Home":
+    page_home()
+elif selected_page == "Leaf Diagnosis":
+    page_leaf()
 
